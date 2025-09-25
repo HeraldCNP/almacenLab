@@ -10,6 +10,8 @@ class Ubicacion extends Model
 {
     use HasFactory;
 
+    protected $table = 'ubicaciones';
+
     protected $fillable = [
         'nombre_ubicacion',
     ];
@@ -19,4 +21,3 @@ class Ubicacion extends Model
         return $this->hasMany(Lote::class);
     }
 }
-

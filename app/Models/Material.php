@@ -11,6 +11,8 @@ class Material extends Model
 {
     use HasFactory;
 
+    protected $table = 'materiales';
+
     protected $fillable = [
         'nombre_material',
         'categoria_id',
@@ -28,4 +30,3 @@ class Material extends Model
         return $this->hasMany(Lote::class);
     }
 }
-

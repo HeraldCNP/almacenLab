@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Ubicacion;
 use Illuminate\Database\Seeder;
 
 class UbicacionSeeder extends Seeder
@@ -12,8 +12,8 @@ class UbicacionSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Ubicacion::create(['nombre_ubicacion' => 'Almacén Principal']);
-        \App\Models\Ubicacion::create(['nombre_ubicacion' => 'Almacén Secundario']);
-        \App\Models\Ubicacion::create(['nombre_ubicacion' => 'Zona de Cuarentena']);
+        Ubicacion::create(['nombre_ubicacion' => 'Almacén Principal']);
+        Ubicacion::create(['nombre_ubicacion' => 'Almacén Secundario']);
+
     }
 }

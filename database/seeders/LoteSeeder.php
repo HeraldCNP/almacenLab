@@ -49,7 +49,7 @@ class LoteSeeder extends Seeder
             'proveedor_id' => 1, // Proveedor A
             'cantidad_inicial' => 10,
             'cantidad_disponible' => 10,
-            'ubicacion_id' => 3, // Zona de Cuarentena
+            'ubicacion_id' => 1, // Zona de Cuarentena
         ]);
     }
 }
