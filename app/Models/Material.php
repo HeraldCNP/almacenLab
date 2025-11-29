@@ -14,8 +14,10 @@ class Material extends Model
     protected $table = 'materiales';
 
     protected $fillable = [
+        'codigo',
         'nombre_material',
         'categoria_id',
+        'unidad_medida_id',
         'stock_minimo',
         'stock_actual',
     ];
@@ -23,6 +25,11 @@ class Material extends Model
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class);
+    }
+
+    public function unidadMedida(): BelongsTo
+    {
+        return $this->belongsTo(UnidadMedida::class);
     }
 
     public function lotes(): HasMany

@@ -10,6 +10,8 @@ class Categoria extends Model
 {
     use HasFactory;
 
+    protected $table = 'categorias';
+
     protected $fillable = [
         'nombre_categoria',
     ];
@@ -19,4 +21,3 @@ class Categoria extends Model
         return $this->hasMany(Material::class);
     }
 }
-

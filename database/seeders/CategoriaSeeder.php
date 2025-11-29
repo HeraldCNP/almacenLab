@@ -2,19 +2,27 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Categoria;
 use Illuminate\Database\Seeder;
 
 class CategoriaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        \App\Models\Categoria::create(['nombre_categoria' => 'Electrónica']);
-        \App\Models\Categoria::create(['nombre_categoria' => 'Ropa']);
-        \App\Models\Categoria::create(['nombre_categoria' => 'Alimentos']);
-        \App\Models\Categoria::create(['nombre_categoria' => 'Libros']);
+        $categorias = [
+            ['nombre_categoria' => 'Reactivos Ácidos'],
+            ['nombre_categoria' => 'Reactivos Básicos'],
+            ['nombre_categoria' => 'Sales y Óxidos'],
+            ['nombre_categoria' => 'Solventes Orgánicos'],
+            ['nombre_categoria' => 'Vidriería Volumétrica'],
+            ['nombre_categoria' => 'Vidriería General'],
+            ['nombre_categoria' => 'Equipos de Medición'],
+            ['nombre_categoria' => 'EPP'],
+            ['nombre_categoria' => 'Consumibles'],
+        ];
+
+        foreach ($categorias as $categoria) {
+            Categoria::create($categoria);
+        }
     }
 }

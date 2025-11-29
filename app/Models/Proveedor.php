@@ -15,6 +15,9 @@ class Proveedor extends Model
     protected $fillable = [
         'nombre_proveedor',
         'contacto_proveedor',
+        'email',
+        'telefono',
+        'direccion',
     ];
 
     public function lotes(): HasMany

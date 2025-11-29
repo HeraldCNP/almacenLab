@@ -14,6 +14,7 @@ class Ubicacion extends Model
 
     protected $fillable = [
         'nombre_ubicacion',
+        'descripcion',
     ];
 
     public function lotes(): HasMany

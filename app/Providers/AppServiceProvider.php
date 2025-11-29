@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('manage-inventory', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        Gate::define('view-inventory', function (User $user) {
+            return $user->isAdmin() || $user->isUser();
+        });
+
+        Gate::define('register-movement', function (User $user) {
+            return $user->isAdmin() || $user->isUser();
+        });
     }
 }

@@ -8,23 +8,28 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Movimiento extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'lote_id',
-        'tipo_movimiento',
-        'cantidad_movimiento',
         'user_id',
-        'observaciones',
+        'tipo',
+        'cantidad',
+        'motivo',
+        'fecha_movimiento',
     ];
 
-    public function lote(): BelongsTo
+    protected $casts = [
+        'fecha_movimiento' => 'datetime',
+    ];
+
+    public function lote()
     {
         return $this->belongsTo(Lote::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+
 }

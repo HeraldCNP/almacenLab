@@ -2,38 +2,48 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Lote;
+use App\Models\Movimiento;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class MovimientoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        \App\Models\Movimiento::create([
-            'lote_id' => 1, // LT-XPS-001
-            'user_id' => 1, // Assuming a user with ID 1 exists
-            'tipo_movimiento' => 'entrada',
-            'cantidad_movimiento' => 5,
-            'observaciones' => 'Entrada inicial de laptops',
-        ]);
+        $lotes = Lote::all();
+        $user = User::first();
 
-        \App\Models\Movimiento::create([
-            'lote_id' => 2, // CM-ALG-001
-            'user_id' => 1, // Assuming a user with ID 1 exists
-            'tipo_movimiento' => 'salida',
-            'cantidad_movimiento' => 10,
-            'observaciones' => 'Salida para venta minorista',
-        ]);
+        if ($lotes->isEmpty() || !$user) {
+            return;
+        }
 
-        \App\Models\Movimiento::create([
-            'lote_id' => 3, // AR-BAS-001
-            'user_id' => 1, // Assuming a user with ID 1 exists
-            'tipo_movimiento' => 'entrada',
-            'cantidad_movimiento' => 100,
-            'observaciones' => 'Recepción de nuevo stock de arroz',
-        ]);
+        // Create some movements for the first few batches
+        foreach ($lotes->take(5) as $lote) {
+            Movimiento::create([
+                'lote_id' => $lote->id,
+                'user_id' => $user->id,
+                'tipo' => 'ENTRADA',
+                'cantidad' => $lote->cantidad_inicial,
+                'motivo' => 'Inventario Inicial',
+                'fecha_movimiento' => now(),
+            ]);
+
+            // Simulate a small output if stock allows
+            if ($lote->cantidad_disponible > 5) {
+                Movimiento::create([
+                    'lote_id' => $lote->id,
+                    'user_id' => $user->id,
+                    'tipo' => 'SALIDA',
+                    'cantidad' => 2,
+                    'motivo' => 'Consumo interno prueba',
+                    'fecha_movimiento' => now()->addHours(2),
+                ]);
+                
+                // Update stock to reflect the seeded movement
+                $lote->decrement('cantidad_disponible', 2);
+                $lote->material->decrement('stock_actual', 2);
+            }
+        }
     }
 }

@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lote_id')->constrained('lotes')->onDelete('cascade');
-            $table->string('tipo_movimiento'); // 'Entrada' o 'Salida'
-            $table->integer('cantidad_movimiento');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->text('observaciones')->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->enum('tipo', ['ENTRADA', 'SALIDA', 'AJUSTE']);
+            $table->integer('cantidad');
+            $table->string('motivo')->nullable();
+            $table->timestamp('fecha_movimiento')->useCurrent();
             $table->timestamps();
         });
     }

@@ -13,10 +13,20 @@ class userSeeder extends Seeder
      */
     public function run(): void
     {
+        // Admin User
         \App\Models\User::create([
             'name' => 'Herald',
             'email' => 'heraldcnp@gmail.com',
             'password' => Hash::make('123'),
+            'role' => 'admin',
+        ]);
+
+        // Analyst User
+        \App\Models\User::create([
+            'name' => 'Analista',
+            'email' => 'analista@lab.com',
+            'password' => Hash::make('123'),
+            'role' => 'user',
         ]);
     }
 }
