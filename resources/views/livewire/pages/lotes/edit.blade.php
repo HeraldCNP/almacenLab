@@ -5,6 +5,8 @@ use App\Models\Lote;
 use App\Models\Material;
 use App\Models\Proveedor;
 use App\Models\Ubicacion;
+use App\Models\Movimiento;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 
 new #[Layout('components.layouts.app')] class extends Component {
@@ -35,24 +37,11 @@ new #[Layout('components.layouts.app')] class extends Component {
             'ubicacion_id' => 'required|exists:ubicaciones,id',
             'lote' => 'required|string|max:255',
             'fecha_caducidad' => 'nullable|date',
-            'cantidad_disponible' => 'required|integer|min:0',
+            'cantidad_disponible' => 'nullable', // Validation remains flexible but field is effectively read-only
         ]);
 
-        // Calcular diferencia para ajustar stock total si cambia la cantidad disponible (corrección manual)
-        $diferencia = $validated['cantidad_disponible'] - $this->loteModel->cantidad_disponible;
-        
-        $validated['fecha_caducidad'] = $validated['fecha_caducidad'] ?: null;
-
-        $this->loteModel->update($validated);
-
-        if ($diferencia != 0) {
-            $material = Material::find($this->material_id);
-            if ($diferencia > 0) {
-                $material->increment('stock_actual', $diferencia);
-            } else {
-                $material->decrement('stock_actual', abs($diferencia));
-            }
-        }
+        // Stock quantity updates are now disabled in this view to enforce audit trails via 'Adjustments'.
+        // Only updates metadata.
 
         session()->flash('success', 'Lote actualizado correctamente.');
 
@@ -122,9 +111,9 @@ new #[Layout('components.layouts.app')] class extends Component {
                     </div>
 
                     <div>
-                        <label for="cantidad_disponible" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Cantidad Disponible') }}</label>
-                        <input wire:model="cantidad_disponible" type="number" id="cantidad_disponible" min="0" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                        <p class="text-xs text-gray-500 mt-1">Total inicial: {{ $loteModel->cantidad_inicial }}</p>
+                        <label for="cantidad_disponible" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Cantidad Disponible (Solo Lectura)') }}</label>
+                        <input wire:model="cantidad_disponible" type="number" id="cantidad_disponible" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100 dark:bg-gray-600 cursor-not-allowed" readonly disabled>
+                        <p class="text-xs text-gray-500 mt-1">Para modificar stock, use "Ajuste de Inventario".</p>
                         @error('cantidad_disponible') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
                 </div>

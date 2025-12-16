@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.1.1",
         "livewire/livewire": "^3.6",
-        "livewire/volt": "^1.7.0"
+        "livewire/volt": "^1.7.0",
+        "spatie/laravel-permission": "*"
     },
     "require-dev": {
         "beyondcode/laravel-er-diagram-generator": "^5.0",

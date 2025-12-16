@@ -11,6 +11,7 @@ class Movimiento extends Model
     protected $fillable = [
         'lote_id',
         'user_id',
+        'recibido_por_id',
         'tipo',
         'cantidad',
         'motivo',
@@ -29,6 +30,11 @@ class Movimiento extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function recibidoPor()
+    {
+        return $this->belongsTo(User::class, 'recibido_por_id');
     }
 
 

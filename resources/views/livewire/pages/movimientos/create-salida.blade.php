@@ -4,6 +4,7 @@ use Livewire\Volt\Component;
 use App\Models\Material;
 use App\Models\Lote;
 use App\Models\Movimiento;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 
@@ -12,6 +13,7 @@ new #[Layout('components.layouts.app')] class extends Component {
     public $lote_id = '';
     public $cantidad = '';
     public $motivo = '';
+    public $recibido_por_id = '';
 
     public $lotes_disponibles = [];
 
@@ -42,6 +44,7 @@ new #[Layout('components.layouts.app')] class extends Component {
             'lote_id' => 'required|exists:lotes,id',
             'cantidad' => 'required|integer|min:1',
             'motivo' => 'required|string|max:255',
+            'recibido_por_id' => 'required|exists:users,id',
         ]);
 
         $lote = Lote::find($this->lote_id);
@@ -64,6 +67,7 @@ new #[Layout('components.layouts.app')] class extends Component {
             'tipo' => 'SALIDA',
             'cantidad' => $validated['cantidad'],
             'motivo' => $validated['motivo'],
+            'recibido_por_id' => $validated['recibido_por_id'],
             'fecha_movimiento' => now(),
         ]);
 
@@ -76,6 +80,7 @@ new #[Layout('components.layouts.app')] class extends Component {
     {
         return [
             'materiales' => Material::where('stock_actual', '>', 0)->get(), // Only show materials with stock
+            'usuarios' => User::orderBy('name')->get(),
         ];
     }
 }; ?>
@@ -136,6 +141,19 @@ new #[Layout('components.layouts.app')] class extends Component {
                         <input wire:model="motivo" type="text" id="motivo" placeholder="Ej. Proyecto X, Muestra Calidad..." class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                         @error('motivo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
+                </div>
+
+                <div class="mb-4 relative z-10">
+                    <x-searchable-select
+                        label="Entregado A / Recibido Por"
+                        :options="$usuarios"
+                        option-label="name"
+                        option-value="id"
+                        wire:model="recibido_por_id"
+                        wireModel="recibido_por_id"
+                        placeholder="Seleccione usuario..."
+                    />
+                    @error('recibido_por_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="flex justify-end mt-6">

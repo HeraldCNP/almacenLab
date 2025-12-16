@@ -64,6 +64,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reportes/movimientos', [App\Http\Controllers\ReporteController::class, 'movimientos'])->name('reportes.movimientos');
 
     Volt::route('/lotes/{lote}/ajuste', 'pages.lotes.ajuste')->name('lotes.ajuste');
+    
+    // User Management
+    Volt::route('users', 'pages.users.index')->name('users.index');
+    Volt::route('users/create', 'pages.users.create')->name('users.create');
+    Volt::route('users/{user}/edit', 'pages.users.edit')->name('users.edit');
 });
 
 require __DIR__.'/auth.php';

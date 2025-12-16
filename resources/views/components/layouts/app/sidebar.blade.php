@@ -28,6 +28,7 @@
                 <flux:navlist.item icon="arrows-right-left" href="{{ route('movimientos.index') }}" :current="request()->routeIs('movimientos.*')">{{ __('Movimientos') }}</flux:navlist.item>
                 <flux:navlist.item icon="document-text" href="{{ route('reportes.index') }}" :current="request()->routeIs('reportes.*')">{{ __('Reportes') }}</flux:navlist.item>
         <flux:navlist.item icon="beaker" href="{{ route('materiales.index') }}" :current="request()->routeIs('materiales.*')">{{ __('Materiales') }}</flux:navlist.item>
+                <flux:navlist.item icon="users" href="{{ route('users.index') }}" :current="request()->routeIs('users.*')">{{ __('Usuarios') }}</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
 
