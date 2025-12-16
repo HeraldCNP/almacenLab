@@ -13,13 +13,17 @@ class RoleSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // create roles
-        $roleAdmin = Role::create(['name' => 'admin']);
-        $roleAlmacenista = Role::create(['name' => 'almacenista']);
-        $roleUser = Role::create(['name' => 'user']);
-        $roleInvitado = Role::create(['name' => 'invitado']);
+        // Create Roles
+        $roleAdmin = Role::firstOrCreate(['name' => 'Administrador']);
+        $roleTecnica = Role::firstOrCreate(['name' => 'Dirección Técnica']);
+        $roleOperador = Role::firstOrCreate(['name' => 'Operador']);
 
-        // Future: create permissions and assign to roles
-        // Permission::create(['name' => 'edit articles']);
+        // Define Permissions
+        $manageInventory = Permission::firstOrCreate(['name' => 'manage-inventory']);
+
+        // Assign Permissions
+        $roleAdmin->givePermissionTo($manageInventory);
+        $roleTecnica->givePermissionTo($manageInventory);
+        // Operador might have limited access, leaving for now
     }
 }

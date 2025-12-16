@@ -112,7 +112,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
                     <div>
                         <label for="cantidad_disponible" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Cantidad Disponible (Solo Lectura)') }}</label>
-                        <input wire:model="cantidad_disponible" type="number" id="cantidad_disponible" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100 dark:bg-gray-600 cursor-not-allowed" readonly disabled>
+                        <input wire:model="cantidad_disponible" type="number" id="cantidad_disponible" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100 dark:bg-gray-600 cursor-pointer cursor-not-allowed" readonly disabled>
                         <p class="text-xs text-gray-500 mt-1">Para modificar stock, use "Ajuste de Inventario".</p>
                         @error('cantidad_disponible') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
@@ -131,7 +131,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                 </div>
 
                 <div class="flex justify-end">
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-zinc-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-zinc-500 focus:bg-zinc-500 active:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-600 cursor-pointer border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-500 focus:bg-gray-500 active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out duration-150">
                         {{ __('Actualizar Lote') }}
                     </button>
                 </div>

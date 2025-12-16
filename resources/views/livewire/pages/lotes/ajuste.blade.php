@@ -127,7 +127,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                 </div>
 
                 <div class="flex justify-end">
-                    <flux:button type="submit" variant="primary" class="bg-zinc-600 hover:bg-zinc-500 text-white cursor-pointer">
+                    <flux:button type="submit" variant="primary" class="bg-gray-600 cursor-pointer hover:bg-gray-500 text-white cursor-pointer">
                         {{ __('Registrar Ajuste') }}
                     </flux:button>
                 </div>

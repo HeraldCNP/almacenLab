@@ -31,7 +31,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                     {{ __('Gestión de Usuarios') }}
                 </h3>
-                <a href="{{ route('users.create') }}" wire:navigate class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 text-sm font-medium">
+                <a href="{{ route('users.create') }}" wire:navigate class="px-4 py-2 bg-gray-600 cursor-pointer text-white rounded-md hover:bg-gray-500 text-sm font-medium transition ease-in-out duration-150">
                     {{ __('Nuevo Usuario') }}
                 </a>
             </div>
@@ -59,8 +59,14 @@ new #[Layout('components.layouts.app')] class extends Component {
                                     @endforeach
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ route('users.edit', $user) }}" wire:navigate class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-3">Editar</a>
-                                    <button wire:confirm="¿Estás seguro de eliminar este usuario?" wire:click="delete({{ $user->id }})" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">Eliminar</button>
+                                    <div class="flex justify-end gap-2">
+                                        <a href="{{ route('users.edit', $user) }}" wire:navigate class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300" title="Editar">
+                                            <flux:icon.pencil-square class="w-5 h-5" />
+                                        </a>
+                                        <button wire:confirm="¿Estás seguro de eliminar este usuario?" wire:click="delete({{ $user->id }})" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300" title="Eliminar">
+                                            <flux:icon.trash class="w-5 h-5" />
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

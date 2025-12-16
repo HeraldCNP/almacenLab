@@ -62,9 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('reportes', 'pages.reportes.index')->name('reportes.index');
     Route::get('reportes/stock', [App\Http\Controllers\ReporteController::class, 'stock'])->name('reportes.stock');
     Route::get('/reportes/movimientos', [App\Http\Controllers\ReporteController::class, 'movimientos'])->name('reportes.movimientos');
+    Route::get('/reportes/planilla-entrega', [App\Http\Controllers\ReporteController::class, 'planillaEntrega'])->name('reportes.planilla-entrega');
 
     Volt::route('/lotes/{lote}/ajuste', 'pages.lotes.ajuste')->name('lotes.ajuste');
-    
+
     // User Management
     Volt::route('users', 'pages.users.index')->name('users.index');
     Volt::route('users/create', 'pages.users.create')->name('users.create');

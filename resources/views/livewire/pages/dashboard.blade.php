@@ -4,6 +4,7 @@ use Livewire\Volt\Component;
 use App\Models\Material;
 use App\Models\Lote;
 use App\Models\Movimiento;
+use App\Models\User;
 use Livewire\Attributes\Layout;
 
 new #[Layout('components.layouts.app')] class extends Component {
@@ -22,6 +23,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                 ->get(),
             'totalMateriales' => Material::count(),
             'totalLotes' => Lote::where('cantidad_disponible', '>', 0)->count(),
+            'totalUsuarios' => User::count(),
         ];
     }
 }; ?>
@@ -48,6 +50,33 @@ new #[Layout('components.layouts.app')] class extends Component {
                 </div>
                 <div class="p-3 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900 dark:text-emerald-300">
                     <flux:icon.archive-box class="w-8 h-8" />
+                </div>
+            </div>
+        </div>
+
+        {{-- Expanded Stats --}}
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 flex items-center justify-between col-span-1 md:col-span-2">
+                <div>
+                    <div class="text-gray-500 dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Usuarios</div>
+                    <div class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{{ $totalUsuarios }}</div>
+                </div>
+                <div class="p-2 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                    <flux:icon.users class="w-6 h-6" />
+                </div>
+            </div>
+            
+             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 col-span-1 md:col-span-2 flex items-center justify-between gap-4">
+                <div class="w-full">
+                    <div class="text-gray-500 dark:text-gray-400 text-xs font-medium uppercase tracking-wider mb-3">Accesos Rápidos</div>
+                    <div class="flex gap-2">
+                        <a href="{{ route('movimientos.salida') }}" wire:navigate class="flex-1 inline-flex justify-center items-center px-4 py-2 bg-gray-600 cursor-pointer hover:bg-gray-500 text-white text-xs font-bold uppercase rounded-md transition">
+                            <flux:icon.minus-circle class="w-4 h-4 mr-2" /> Salida
+                        </a>
+                         <a href="{{ route('reportes.index') }}" wire:navigate class="flex-1 inline-flex justify-center items-center px-4 py-2 bg-gray-600 cursor-pointer hover:bg-gray-500 text-white text-xs font-bold uppercase rounded-md transition">
+                            <flux:icon.document-text class="w-4 h-4 mr-2" /> Reportes
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

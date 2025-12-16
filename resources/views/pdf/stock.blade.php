@@ -3,20 +3,20 @@
 <head>
     <title>Reporte de Stock</title>
     <style>
-        @page { margin: 100px 25px; }
+        @page { margin: 160px 25px 60px 25px; }
         body { font-family: sans-serif; font-size: 12px; }
-        header { position: fixed; top: -60px; left: 0px; right: 0px; height: 80px; text-align: center; }
-        footer { position: fixed; bottom: -60px; left: 0px; right: 0px; height: 40px; border-top: 1px solid #ddd; padding-top: 10px; }
+        header { position: fixed; top: -140px; left: 0px; right: 0px; height: 120px; text-align: center; }
+        footer { position: fixed; bottom: -40px; left: 0px; right: 0px; height: 30px; border-top: 1px solid #ddd; padding-top: 5px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
-        h1 { margin: 0; color: #333; font-size: 18px; }
+        h1 { margin: 10px 0 5px 0; color: #333; font-size: 18px; }
         .page-number:after { content: counter(page); }
     </style>
 </head>
 <body>
     <header>
-        <img src="{{ public_path('images/banner.jpg') }}" alt="Banner" style="height: 40px; width: auto; margin-bottom: 5px;">
+        <img src="{{ public_path('images/banner.jpg') }}" alt="Banner" style="width: 100%; height: auto; margin-bottom: 5px;">
         <h1>Reporte de Stock Actual</h1>
         <p style="margin: 2px 0; font-size: 10px;">Fecha: {{ now()->format('d/m/Y H:i') }}</p>
     </header>

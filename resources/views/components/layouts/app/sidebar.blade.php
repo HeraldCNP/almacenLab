@@ -16,19 +16,26 @@
 
 
         <flux:navlist variant="outline">
-            <flux:navlist.group :heading="__('Platform')" class="grid">
-                <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
-                    wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                <flux:navlist.item icon="tag" :href="route('categorias.index')" :current="request()->routeIs('categorias.index')"
-                    wire:navigate>{{ __('Categorias') }}</flux:navlist.item>
-                <flux:navlist.item icon="scale" href="{{ route('unidades.index') }}" :current="request()->routeIs('unidades.*')">{{ __('Unidades') }}</flux:navlist.item>
-        <flux:navlist.item icon="truck" href="{{ route('proveedores.index') }}" :current="request()->routeIs('proveedores.*')">{{ __('Proveedores') }}</flux:navlist.item>
-        <flux:navlist.item icon="map-pin" href="{{ route('ubicaciones.index') }}" :current="request()->routeIs('ubicaciones.*')">{{ __('Ubicaciones') }}</flux:navlist.item>
-                <flux:navlist.item icon="archive-box" href="{{ route('lotes.index') }}" :current="request()->routeIs('lotes.*')">{{ __('Inventario') }}</flux:navlist.item>
+            <flux:navlist.group :heading="__('Principal')" class="grid">
+                <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+            </flux:navlist.group>
+
+            <flux:navlist.group :heading="__('Operaciones')" class="grid">
                 <flux:navlist.item icon="arrows-right-left" href="{{ route('movimientos.index') }}" :current="request()->routeIs('movimientos.*')">{{ __('Movimientos') }}</flux:navlist.item>
+                <flux:navlist.item icon="archive-box" href="{{ route('lotes.index') }}" :current="request()->routeIs('lotes.*')">{{ __('Inventario') }}</flux:navlist.item>
+            </flux:navlist.group>
+
+            <flux:navlist.group :heading="__('Gestión')" class="grid">
+                <flux:navlist.item icon="beaker" href="{{ route('materiales.index') }}" :current="request()->routeIs('materiales.*')">{{ __('Materiales') }}</flux:navlist.item>
                 <flux:navlist.item icon="document-text" href="{{ route('reportes.index') }}" :current="request()->routeIs('reportes.*')">{{ __('Reportes') }}</flux:navlist.item>
-        <flux:navlist.item icon="beaker" href="{{ route('materiales.index') }}" :current="request()->routeIs('materiales.*')">{{ __('Materiales') }}</flux:navlist.item>
                 <flux:navlist.item icon="users" href="{{ route('users.index') }}" :current="request()->routeIs('users.*')">{{ __('Usuarios') }}</flux:navlist.item>
+            </flux:navlist.group>
+
+            <flux:navlist.group :heading="__('Configuración')" class="grid">
+                <flux:navlist.item icon="tag" :href="route('categorias.index')" :current="request()->routeIs('categorias.index')" wire:navigate>{{ __('Categorias') }}</flux:navlist.item>
+                <flux:navlist.item icon="scale" href="{{ route('unidades.index') }}" :current="request()->routeIs('unidades.*')">{{ __('Unidades') }}</flux:navlist.item>
+                <flux:navlist.item icon="map-pin" href="{{ route('ubicaciones.index') }}" :current="request()->routeIs('ubicaciones.*')">{{ __('Ubicaciones') }}</flux:navlist.item>
+                <flux:navlist.item icon="truck" href="{{ route('proveedores.index') }}" :current="request()->routeIs('proveedores.*')">{{ __('Proveedores') }}</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
 

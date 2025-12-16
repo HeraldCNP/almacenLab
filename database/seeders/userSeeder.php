@@ -14,19 +14,33 @@ class userSeeder extends Seeder
     public function run(): void
     {
         // Admin User
-        \App\Models\User::create([
-            'name' => 'Herald',
-            'email' => 'heraldcnp@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'admin',
-        ]);
+        $admin = \App\Models\User::firstOrCreate(
+            ['email' => 'heraldcnp@gmail.com'],
+            [
+                'name' => 'Herald',
+                'password' => Hash::make('123'),
+            ]
+        );
+        $admin->assignRole('Administrador');
 
-        // Analyst User
-        \App\Models\User::create([
-            'name' => 'Analista',
-            'email' => 'analista@lab.com',
-            'password' => Hash::make('123'),
-            'role' => 'user',
-        ]);
+        // Technical Direction User
+        $tecnica = \App\Models\User::firstOrCreate(
+            ['email' => 'tecnica@lab.com'],
+            [
+                'name' => 'Dirección Técnica',
+                'password' => Hash::make('123'),
+            ]
+        );
+        $tecnica->assignRole('Dirección Técnica');
+
+        // Operator User
+        $analista = \App\Models\User::firstOrCreate(
+            ['email' => 'analista@lab.com'],
+            [
+                'name' => 'Analista',
+                'password' => Hash::make('123'),
+            ]
+        );
+        $analista->assignRole('Operador');
     }
 }

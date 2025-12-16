@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reporte de Movimientos</title>
+    <title>Planilla de Entrega</title>
     <style>
-        @page { margin: 160px 25px 60px 25px; }
+        @page { margin: 160px 25px 60px 25px; } /* Increased top margin for bigger header */
         body { font-family: sans-serif; font-size: 12px; }
-        header { position: fixed; top: -140px; left: 0px; right: 0px; height: 120px; text-align: center; }
+        header { position: fixed; top: -140px; left: 0px; right: 0px; height: 120px; text-align: center; } /* Adjusted header position */
         footer { position: fixed; bottom: -40px; left: 0px; right: 0px; height: 30px; border-top: 1px solid #ddd; padding-top: 5px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
-        h1 { margin: 10px 0 5px 0; color: #333; font-size: 18px; }
-        .badge { padding: 2px 5px; border-radius: 3px; font-size: 10px; color: white; }
-        .entrada { background-color: #16a34a; }
-        .salida { background-color: #dc2626; }
-        .ajuste { background-color: #ca8a04; }
+        h1 { margin: 10px 0 5px 0; color: #333; font-size: 18px; } /* Added margin to h1 */
+        .signature-box { margin-top: 50px; text-align: center; float: right; width: 200px; }
+        .signature-line { border-top: 1px solid #000; margin-top: 40px; }
         .page-number:after { content: counter(page); }
     </style>
 </head>
 <body>
     <header>
         <img src="{{ public_path('images/banner.jpg') }}" alt="Banner" style="width: 100%; height: auto; margin-bottom: 5px;">
-        <h1>Movimientos del Mes ({{ now()->format('F Y') }})</h1>
-        <p style="margin: 2px 0; font-size: 10px;">Generado el: {{ now()->format('d/m/Y H:i') }}</p>
+        <h1>Planilla de Entrega de Materiales</h1>
+        <p style="margin: 2px 0; font-size: 10px;">Del {{ $fechaInicio }} al {{ $fechaFin }}</p>
     </header>
 
     <footer>
@@ -43,30 +41,27 @@
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Tipo</th>
                     <th>Material</th>
                     <th>Cantidad</th>
-                    <th>Usuario</th>
-                    <th>Motivo</th>
+                    <th>Entregado Por</th>
+                    <th>Recibido Por</th>
+                    <th style="width: 100px;">Firma Receptor</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($movimientos as $mov)
                     <tr>
                         <td>{{ $mov->created_at->format('d/m/Y H:i') }}</td>
-                        <td>
-                            <span class="badge {{ strtolower($mov->tipo) }}">
-                                {{ $mov->tipo }}
-                            </span>
-                        </td>
                         <td>{{ $mov->lote->material->nombre_material }}</td>
                         <td>{{ $mov->cantidad }}</td>
                         <td>{{ $mov->user->name }}</td>
-                        <td>{{ $mov->motivo ?? '-' }}</td>
+                        <td>{{ $mov->recibidoPor->name ?? 'N/A' }}</td>
+                        <td></td> <!-- Empty for signature -->
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
     </main>
 
 </body>
