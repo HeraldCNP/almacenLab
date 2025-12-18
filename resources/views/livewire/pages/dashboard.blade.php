@@ -35,7 +35,7 @@ new #[Layout('components.layouts.app')] class extends Component {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 flex items-center justify-between">
                 <div>
-                    <div class="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Total Materiales</div>
+                    <div class="text-gray-700 dark:text-gray-200 text-sm font-medium uppercase tracking-wider">Total Materiales</div>
                     <div class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{{ $totalMateriales }}</div>
                 </div>
                 <div class="p-3 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">
@@ -45,7 +45,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 flex items-center justify-between">
                 <div>
-                    <div class="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Lotes Activos</div>
+                    <div class="text-gray-700 dark:text-gray-200 text-sm font-medium uppercase tracking-wider">Lotes Activos</div>
                     <div class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{{ $totalLotes }}</div>
                 </div>
                 <div class="p-3 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900 dark:text-emerald-300">
@@ -58,7 +58,7 @@ new #[Layout('components.layouts.app')] class extends Component {
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 flex items-center justify-between col-span-1 md:col-span-2">
                 <div>
-                    <div class="text-gray-500 dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Usuarios</div>
+                    <div class="text-gray-700 dark:text-gray-200 text-xs font-medium uppercase tracking-wider">Usuarios</div>
                     <div class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{{ $totalUsuarios }}</div>
                 </div>
                 <div class="p-2 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
@@ -68,9 +68,9 @@ new #[Layout('components.layouts.app')] class extends Component {
             
              <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 col-span-1 md:col-span-2 flex items-center justify-between gap-4">
                 <div class="w-full">
-                    <div class="text-gray-500 dark:text-gray-400 text-xs font-medium uppercase tracking-wider mb-3">Accesos Rápidos</div>
+                    <div class="text-gray-700 dark:text-gray-200 text-xs font-medium uppercase tracking-wider mb-3">Accesos Rápidos</div>
                     <div class="flex gap-2">
-                        <a href="{{ route('movimientos.salida') }}" wire:navigate class="flex-1 inline-flex justify-center items-center px-4 py-2 bg-gray-600 cursor-pointer hover:bg-gray-500 text-white text-xs font-bold uppercase rounded-md transition">
+                        <a href="{{ route('movimientos.salida') }}" wire:navigate class="flex-1 inline-flex justify-center items-center px-4 py-2 bg-red-600 cursor-pointer hover:bg-red-500 text-white text-xs font-bold uppercase rounded-md transition">
                             <flux:icon.minus-circle class="w-4 h-4 mr-2" /> Salida
                         </a>
                          <a href="{{ route('reportes.index') }}" wire:navigate class="flex-1 inline-flex justify-center items-center px-4 py-2 bg-gray-600 cursor-pointer hover:bg-gray-500 text-white text-xs font-bold uppercase rounded-md transition">
@@ -99,7 +99,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                                 <li class="py-3 flex justify-between items-center">
                                     <div>
                                         <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $material->nombre_material }}</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">Min: {{ $material->stock_minimo }} | Actual: {{ $material->stock_actual }}</p>
+                                        <p class="text-xs text-gray-700 dark:text-gray-300">Min: {{ $material->stock_minimo }} | Actual: {{ $material->stock_actual }}</p>
                                     </div>
                                 </li>
                             @endforeach
@@ -125,7 +125,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                                 <li class="py-3 flex justify-between items-center">
                                     <div>
                                         <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $lote->material->nombre_material }}</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">Lote: {{ $lote->lote }} | Vence: {{ $lote->fecha_caducidad->format('d/m/Y') }}</p>
+                                        <p class="text-xs text-gray-700 dark:text-gray-300">Lote: {{ $lote->lote }} | Vence: {{ $lote->fecha_caducidad->format('d/m/Y') }}</p>
                                     </div>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
                                         {{ $lote->fecha_caducidad->diffForHumans() }}
@@ -154,11 +154,11 @@ new #[Layout('components.layouts.app')] class extends Component {
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fecha</th>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tipo</th>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Material</th>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Cantidad</th>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Usuario</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Fecha</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Tipo</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Material</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Cantidad</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Usuario</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -170,13 +170,20 @@ new #[Layout('components.layouts.app')] class extends Component {
                                         <td class="px-4 py-2 whitespace-nowrap">
                                             @php
                                                 $badgeClass = match($mov->tipo) {
-                                                    'ENTRADA' => 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
-                                                    'SALIDA' => 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
-                                                    'AJUSTE' => 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
-                                                    default => 'bg-gray-100 text-gray-800',
+                                                    'ENTRADA' => 'bg-green-600 text-white border border-green-700 dark:bg-green-500',
+                                                    'SALIDA' => 'bg-red-600 text-white border border-red-700 dark:bg-red-500',
+                                                    'AJUSTE' => 'bg-yellow-500 text-white border border-yellow-600 dark:bg-yellow-400 dark:text-yellow-900',
+                                                    default => 'bg-gray-500 text-white border border-gray-600',
+                                                };
+                                                $icon = match($mov->tipo) {
+                                                    'ENTRADA' => 'arrow-down-tray',
+                                                    'SALIDA' => 'arrow-up-tray',
+                                                    'AJUSTE' => 'adjustments-horizontal',
+                                                    default => 'minus',
                                                 };
                                             @endphp
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $badgeClass }}">
+                                            <span class="px-2 inline-flex items-center text-xs leading-5 font-semibold rounded-full {{ $badgeClass }}">
+                                                <flux:icon name="{{ $icon }}" class="w-3 h-3 mr-1" />
                                                 {{ $mov->tipo }}
                                             </span>
                                         </td>
