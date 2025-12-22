@@ -40,21 +40,34 @@
                 <tr>
                     <th>Código</th>
                     <th>Material</th>
-                    <th>Categoría</th>
-                    <th>Stock Actual</th>
                     <th>Unidad</th>
+                    <th>Categoría</th>
+                    <th style="text-align: right;">Stock Actual</th>
+                    <th style="text-align: right;">Valor Total (Bs)</th>
                 </tr>
             </thead>
             <tbody>
+                @php $grandTotal = 0; @endphp
                 @foreach($materiales as $material)
+                    @php
+                        $totalMaterial = $material->lotes->sum(function($lote) {
+                            return $lote->cantidad_disponible * $lote->precio_compra;
+                        });
+                        $grandTotal += $totalMaterial;
+                    @endphp
                     <tr>
                         <td>{{ $material->codigo ?? '-' }}</td>
                         <td>{{ $material->nombre_material }}</td>
-                        <td>{{ $material->categoria->nombre_categoria }}</td>
-                        <td>{{ $material->stock_actual }}</td>
                         <td>{{ $material->unidadMedida->abreviatura }}</td>
+                        <td>{{ $material->categoria->nombre_categoria }}</td>
+                        <td style="text-align: right;">{{ $material->stock_actual }}</td>
+                        <td style="text-align: right;">{{ Number::currency($totalMaterial, in: 'BOB', locale: 'es_BO') }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td colspan="5" style="text-align: right; font-weight: bold;">TOTAL GENERAL:</td>
+                    <td style="text-align: right; font-weight: bold;">{{ Number::currency($grandTotal, in: 'BOB', locale: 'es_BO') }}</td>
+                </tr>
             </tbody>
         </table>
     </main>

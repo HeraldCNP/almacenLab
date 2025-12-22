@@ -18,11 +18,13 @@ class Lote extends Model
         'proveedor_id',
         'cantidad_inicial',
         'cantidad_disponible',
+        'precio_compra',
         'ubicacion_id',
     ];
 
     protected $casts = [
         'fecha_caducidad' => 'date',
+        'precio_compra' => 'decimal:2',
     ];
 
     public function material(): BelongsTo

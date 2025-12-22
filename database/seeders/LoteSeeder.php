@@ -23,6 +23,7 @@ class LoteSeeder extends Seeder
             'proveedor_id' => 1, // Proveedor A
             'cantidad_inicial' => 5,
             'cantidad_disponible' => 5,
+            'precio_compra' => 1200.00, // Precio ejemplo
             'ubicacion_id' => 1, // Almacén Principal
         ]);
 
@@ -53,6 +54,7 @@ class LoteSeeder extends Seeder
                     'fecha_caducidad' => now()->addMonths(rand(1, 24)),
                     'cantidad_inicial' => $cantidad,
                     'cantidad_disponible' => $cantidad,
+                    'precio_compra' => rand(10, 1000) + (rand(0, 99) / 100), // Random price 10.00 - 1000.99
                 ]);
 
                 // Update material stock
@@ -68,6 +70,7 @@ class LoteSeeder extends Seeder
             'proveedor_id' => 1, // Proveedor A
             'cantidad_inicial' => 10,
             'cantidad_disponible' => 10,
+            'precio_compra' => 45.50,
             'ubicacion_id' => 1, // Zona de Cuarentena
         ]);
     }

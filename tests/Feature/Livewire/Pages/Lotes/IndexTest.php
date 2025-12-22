@@ -54,6 +54,7 @@ class IndexTest extends TestCase
             ->set('lote', 'LOTE-123')
             ->set('fecha_caducidad', now()->addYear()->format('Y-m-d'))
             ->set('cantidad_inicial', 100)
+            ->set('precio_compra', 50.50) // Test price
             ->call('save')
             ->assertRedirect(route('lotes.index'));
 
@@ -61,6 +62,7 @@ class IndexTest extends TestCase
             'lote' => 'LOTE-123',
             'cantidad_inicial' => 100,
             'cantidad_disponible' => 100,
+            'precio_compra' => 50.50,
         ]);
 
         // Verify stock update

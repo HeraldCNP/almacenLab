@@ -14,6 +14,7 @@ new #[Layout('components.layouts.app')] class extends Component {
     public string $lote = '';
     public string $fecha_caducidad = '';
     public string $cantidad_inicial = '';
+    public string $precio_compra = '';
 
     public function mount()
     {
@@ -36,10 +37,12 @@ new #[Layout('components.layouts.app')] class extends Component {
             'lote' => 'required|string|max:255',
             'fecha_caducidad' => 'nullable|date',
             'cantidad_inicial' => 'required|integer|min:1',
+            'precio_compra' => 'required|numeric|min:0',
         ]);
 
         $validated['cantidad_disponible'] = $validated['cantidad_inicial'];
         $validated['fecha_caducidad'] = $validated['fecha_caducidad'] ?: null;
+        $validated['precio_compra'] = $validated['precio_compra'] ?: 0;
 
         Lote::create($validated);
 
@@ -125,6 +128,12 @@ new #[Layout('components.layouts.app')] class extends Component {
                         <label for="cantidad_inicial" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Cantidad Recibida') }}</label>
                         <input wire:model="cantidad_inicial" type="number" id="cantidad_inicial" min="1" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                         @error('cantidad_inicial') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div>
+                        <label for="precio_compra" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Precio de Compra') }}</label>
+                        <input wire:model="precio_compra" type="number" step="0.01" id="precio_compra" min="0" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        @error('precio_compra') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
                 </div>
 

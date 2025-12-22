@@ -45,7 +45,7 @@
                     <th>Fecha</th>
                     <th>Tipo</th>
                     <th>Material</th>
-                    <th>Cantidad</th>
+                    <th style="text-align: right;">Cantidad</th>
                     <th>Usuario</th>
                     <th>Motivo</th>
                 </tr>
@@ -60,7 +60,7 @@
                             </span>
                         </td>
                         <td>{{ $mov->lote->material->nombre_material }}</td>
-                        <td>{{ $mov->cantidad }}</td>
+                        <td style="text-align: right;">{{ $mov->cantidad }}</td>
                         <td>{{ $mov->user->name }}</td>
                         <td>{{ $mov->motivo ?? '-' }}</td>
                     </tr>

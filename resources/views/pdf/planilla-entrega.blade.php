@@ -42,7 +42,7 @@
                 <tr>
                     <th>Fecha</th>
                     <th>Material</th>
-                    <th>Cantidad</th>
+                    <th style="text-align: right;">Cantidad</th>
                     <th>Entregado Por</th>
                     <th>Recibido Por</th>
                     <th style="width: 100px;">Firma Receptor</th>
@@ -53,7 +53,7 @@
                     <tr>
                         <td>{{ $mov->created_at->format('d/m/Y H:i') }}</td>
                         <td>{{ $mov->lote->material->nombre_material }}</td>
-                        <td>{{ $mov->cantidad }}</td>
+                        <td style="text-align: right;">{{ $mov->cantidad }}</td>
                         <td>{{ $mov->user->name }}</td>
                         <td>{{ $mov->recibidoPor->name ?? 'N/A' }}</td>
                         <td></td> <!-- Empty for signature -->

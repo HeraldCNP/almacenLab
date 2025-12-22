@@ -11,7 +11,7 @@ class ReporteController extends Controller
 {
     public function stock()
     {
-        $materiales = Material::with(['categoria', 'unidadMedida'])
+        $materiales = Material::with(['categoria', 'unidadMedida', 'lotes'])
             ->orderBy('nombre_material')
             ->get();
 
